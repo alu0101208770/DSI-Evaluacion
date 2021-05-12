@@ -13,15 +13,15 @@ app.get('/execmd', (req, res) => {
     const comand = spawn(cmd_, [args_]);
 
     comand.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
+      res.send(`stdout: ${data}`);
     });
     
     comand.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
+      res.send(`stderr: ${data}`);
     });
     
     comand.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
+      res.send(`child process exited with code ${code}`);
     });
   } 
 });
